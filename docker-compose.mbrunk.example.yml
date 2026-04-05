@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  prompt-optimizer:
+    image: python:3.11-slim
+    container_name: prompt-optimizer
+    volumes:
+      - /mnt/docker_nfs/docker/vUbtDoc-Infra-Crt-Prod-N01/prompt-optimizer:/data
+      - ./scripts:/app/scripts
+      - ./prompts:/app/prompts
+      - ./config:/app/config
+    working_dir: /app
+    environment:
+      - OLLAMA_URL=http://REPLACE_WITH_YOUR_OLLAMA_HOST:11434
+      - OLLAMA_MODEL=llama3.1:8b
+    command: ["sleep","infinity"]
+    restart: unless-stopped
+
+# Example execution inside container:
+# docker exec -it prompt-optimizer python3 scripts/generate_prompt_artifact.py --input /data/input/chat.md --profile technical-only --mode ollama --ollama-url $OLLAMA_URL --output-dir /data/output
