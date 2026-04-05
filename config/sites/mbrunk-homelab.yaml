@@ -1,0 +1,22 @@
+site_name: mbrunk-homelab
+deployment_host: vUbtDoc-Infra-Crt-Prod-N01.mbrunk.net
+deployment_host_short: vUbtDoc-Infra-Crt-Prod-N01
+install_dir: /opt/prompt-optimizer
+data_root: /mnt/docker_nfs/docker/vUbtDoc-Infra-Crt-Prod-N01/prompt-optimizer
+input_dir: /mnt/docker_nfs/docker/vUbtDoc-Infra-Crt-Prod-N01/prompt-optimizer/input
+output_dir: /mnt/docker_nfs/docker/vUbtDoc-Infra-Crt-Prod-N01/prompt-optimizer/output
+archive_dir: /mnt/docker_nfs/docker/vUbtDoc-Infra-Crt-Prod-N01/prompt-optimizer/archive
+repo_checkout_dir: /mnt/docker_nfs/docker/vUbtDoc-Infra-Crt-Prod-N01/prompt-optimizer/repo
+profiles:
+  default: technical-only
+  supported:
+    - technical-only
+    - full-context
+ollama:
+  url: http://REPLACE_WITH_YOUR_OLLAMA_HOST:11434
+  model: llama3.1:8b
+notes:
+  - The deployment host is pinned to the user's existing naming convention and preferred Docker NFS layout.
+  - Replace the Ollama URL with the actual local AI host or VM endpoint before production use.
+  - Use technical-only for coding, homelab, networking, infrastructure, troubleshooting, automation, and deployment conversations.
+  - Use full-context when adjacent planning context materially changed the final design.
