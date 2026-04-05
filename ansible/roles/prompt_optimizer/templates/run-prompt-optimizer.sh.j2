@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source /etc/default/prompt-optimizer
+PROFILE="${2:-technical-only}"
+MODE="${3:-ollama}"
+TRANSCRIPT_FILE="$1"
+
+if [[ -z "${TRANSCRIPT_FILE:-}" ]]; then
+  echo "Usage: run-prompt-optimizer <transcript-file> [profile] [mode]"
+  exit 1
+fi
+
+python3 "$PROMPT_OPTIMIZER_HOME/scripts/generate_prompt_artifact.py" \
+  --input "$TRANSCRIPT_FILE" \
+  --profile "$PROFILE" \
+  --mode "$MODE" \
+  --model "$OLLAMA_MODEL" \
+  --ollama-url "$OLLAMA_URL" \
+  --output-dir "$PROMPT_OPTIMIZER_HOME/output" \
+  --title "$(basename "$TRANSCRIPT_FILE" | sed 's/\.[^.]*$//')"

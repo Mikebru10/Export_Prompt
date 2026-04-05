@@ -1,0 +1,40 @@
+---
+- name: Ensure dependencies are installed
+  ansible.builtin.package:
+    name:
+      - python3
+      - python3-pip
+      - curl
+    state: present
+
+- name: Ensure install directory exists
+  ansible.builtin.file:
+    path: "{{ prompt_optimizer_install_dir }}"
+    state: directory
+    owner: "{{ prompt_optimizer_user }}"
+    group: "{{ prompt_optimizer_group }}"
+    mode: "0755"
+
+- name: Copy toolkit repo contents
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../"
+    dest: "{{ prompt_optimizer_install_dir }}/"
+    owner: "{{ prompt_optimizer_user }}"
+    group: "{{ prompt_optimizer_group }}"
+    mode: preserve
+
+- name: Deploy environment file
+  ansible.builtin.template:
+    src: prompt-optimizer.env.j2
+    dest: /etc/default/prompt-optimizer
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Deploy wrapper script
+  ansible.builtin.template:
+    src: run-prompt-optimizer.sh.j2
+    dest: /usr/local/bin/run-prompt-optimizer
+    owner: root
+    group: root
+    mode: "0755"

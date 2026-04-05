@@ -1,0 +1,32 @@
+name: technical-only
+description: Preserve only technical context relevant to infrastructure, software, automation, architecture, and operations.
+filter_mode: technical
+exclude_topics:
+  - travel
+  - vacations
+  - family issues
+  - personal lifestyle
+  - unrelated learning plans
+  - non-technical hobbies
+  - radio topics
+  - generic life planning
+include_when_relevant:
+  - coding
+  - scripting
+  - devops
+  - homelab
+  - networking
+  - servers
+  - storage
+  - containers
+  - kubernetes
+  - automation
+  - AI deployment
+  - architecture
+  - troubleshooting
+  - security
+  - observability
+output_targets:
+  - master_prompt
+  - llm_optimized
+  - repo_ready_readme

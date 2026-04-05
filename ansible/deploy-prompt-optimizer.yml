@@ -1,0 +1,12 @@
+---
+- name: Deploy Prompt Optimizer Toolkit
+  hosts: prompt_optimizer_hosts
+  become: true
+  vars:
+    prompt_optimizer_install_dir: /opt/prompt-optimizer
+    prompt_optimizer_user: mike
+    prompt_optimizer_group: mike
+    prompt_optimizer_ollama_url: http://127.0.0.1:11434
+    prompt_optimizer_default_model: llama3.1:8b
+  roles:
+    - prompt_optimizer

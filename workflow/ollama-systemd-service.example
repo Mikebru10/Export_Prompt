@@ -1,0 +1,11 @@
+[Unit]
+Description=Prompt Optimizer Batch Processor
+After=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/default/prompt-optimizer
+ExecStart=/bin/bash -lc 'for f in /mnt/docker_nfs/docker/prompt-optimizer/input/*.md; do [ -e "$f" ] || exit 0; /usr/local/bin/run-prompt-optimizer "$f" technical-only ollama; done'
+
+[Install]
+WantedBy=multi-user.target

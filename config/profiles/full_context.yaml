@@ -1,0 +1,18 @@
+name: full-context
+description: Preserve broad context when adjacent details materially affected the solution.
+filter_mode: permissive
+exclude_topics:
+  - none by default
+include_when_relevant:
+  - user intent
+  - explicit requirements
+  - implied requirements
+  - answered clarifications
+  - design decisions
+  - assumptions
+  - architecture notes
+  - suggested enhancements
+output_targets:
+  - master_prompt
+  - llm_optimized
+  - repo_ready_readme
